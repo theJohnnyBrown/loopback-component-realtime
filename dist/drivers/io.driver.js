@@ -129,6 +129,7 @@ var IODriver = /** @class */ (function () {
                             _this.restoreNameSpaces(socket);
                             socket.token = tokenInstance;
                             socket.emit('authenticated');
+                            _this.options.app.emit('socket-authenticated', socket);
                         }
                     });
                 });
@@ -249,4 +250,4 @@ var IODriver = /** @class */ (function () {
     return IODriver;
 }());
 exports.IODriver = IODriver;
-//# sourceMappingURL=/Volumes/BACKUP/development/loopback-component-realtime/src/drivers/io.driver.js.map
+//# sourceMappingURL=/Users/jb/src/loopback-component-realtime/src/drivers/io.driver.js.map

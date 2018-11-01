@@ -138,7 +138,7 @@ export class IODriver implements DriverInterface {
               this.restoreNameSpaces(socket);
               socket.token = tokenInstance;
               socket.emit('authenticated');
-              _this.options.app.emit('socket-authenticated', socket);
+              this.options.app.emit('socket-authenticated', socket);
             }
           });
         });

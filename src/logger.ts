@@ -12,6 +12,6 @@ export class RealTimeLog {
   static options: OptionsInterface;
   static log(input: any) {
     if (RealTimeLog.options.debug)
-    console.log(chalk.yellow(`${this.namespace}: ${input}`));
+    console.log((chalk as any).yellow(`${this.namespace}: ${input}`));
   }
 }
