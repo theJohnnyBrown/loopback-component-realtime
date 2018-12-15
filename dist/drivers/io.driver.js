@@ -109,6 +109,8 @@ var IODriver = /** @class */ (function () {
                  * Register Built in Auth Resolver
                  */
                 socket.on('authentication', function (token) {
+                    var initialToken = Object.assign({}, token);
+                    delete initialToken.user;
                     if (!token) {
                         return;
                     }
@@ -127,7 +129,7 @@ var IODriver = /** @class */ (function () {
                     }, function (err, tokenInstance) {
                         if (tokenInstance) {
                             _this.restoreNameSpaces(socket);
-                            socket.token = tokenInstance;
+                            socket.token = Object.assign({}, initialToken, tokenInstance);
                             socket.emit('authenticated');
                             _this.options.app.emit('socket-authenticated', socket);
                         }

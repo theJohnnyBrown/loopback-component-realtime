@@ -118,6 +118,8 @@ export class IODriver implements DriverInterface {
          * Register Built in Auth Resolver
          */
         socket.on('authentication', (token: any) => {
+          var initialToken = (<any>Object).assign({}, token);
+          delete initialToken.user;
           if (!token) {
             return;
           }
@@ -136,7 +138,7 @@ export class IODriver implements DriverInterface {
           }, (err: Error, tokenInstance: any) => {
             if (tokenInstance) {
               this.restoreNameSpaces(socket);
-              socket.token = tokenInstance;
+              socket.token = (<any>Object).assign({}, initialToken, tokenInstance);
               socket.emit('authenticated');
               this.options.app.emit('socket-authenticated', socket);
             }
